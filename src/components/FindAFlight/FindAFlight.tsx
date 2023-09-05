@@ -99,7 +99,7 @@ export function FindAFlight() {
             autoCapitalize="none"
             autoComplete="off"
             autoCorrect="off"
-            erroneousInput={dateError}
+            erroneousInput={isSubmitted && dateError !== ''}
             id="date"
             onChange={onChangeDate}
             pattern="([0-9]{2}-){2}[0-9]{4}"

@@ -46,7 +46,6 @@ export function Flights({ flights, criteria }: Props) {
 
   return (
     <div className={styles.flights}>
-
       {flights.length ? (
         <>
           <div className={styles['flights-list-header']}>
@@ -87,7 +86,7 @@ export function Flights({ flights, criteria }: Props) {
           </ul>
         </>
       ) : (
-        <span>Geen vluchten gevonden met {formattedCriteria.join(' en ')}</span>
+        <span>Geen vluchten gevonden {formattedCriteria.length > 0 && <>met {formattedCriteria.join(' en ')}</>}</span>
       )}
     </div>
   );
