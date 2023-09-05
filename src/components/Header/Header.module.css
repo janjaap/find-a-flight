@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  height: 100px;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.schipholLogo {
+  color: var(--schiphol-blue);
+}
+
+@media (prefers-color-scheme: dark) {
+  .schipholLogo {
+    color: var(--white);
+  }
+}

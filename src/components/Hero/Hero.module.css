@@ -1,0 +1,55 @@
+.hero {
+  background-image: url("https://images.ctfassets.net/biom0eqyyi6b/22co81g3BdvSw03gglqeNG/240c525ceb2a2c8c1470b2989c3da79a/herfst22_hero.webp?fm=jpg&fl=progressive&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--white);
+  overflow: hidden;
+  width: 100vw;
+}
+
+.hero-inner {
+  margin: 0 auto;
+  max-width: 61.875rem;
+  min-height: 20rem;
+}
+
+.hero-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 21.75rem;
+  padding: 1.5rem 0;
+  width: 100%;
+}
+
+.hero-title {
+  background: var(--white);
+  color: var(--schiphol-blue);
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 350;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.hero-title-sub {
+  display: block;
+  font-size: 3.518rem;
+  font-weight: bold;
+  line-height: 1.069;
+  max-width: 26.875rem;
+  color: var(--white);
+  text-shadow: 0 0 4px rgba(20, 18, 81, 0.9);
+}
+
+@media screen and (max-width: 55rem) {
+  .hero-body {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 75rem) {
+  .hero-body {
+    padding: 1.5rem;
+  }
+}

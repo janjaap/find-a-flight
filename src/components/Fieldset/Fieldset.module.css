@@ -1,0 +1,10 @@
+.fieldset {
+  border: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.fieldset--vertical {
+  flex-direction: column;
+}
