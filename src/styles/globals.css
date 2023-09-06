@@ -10,9 +10,11 @@
   --afternoon-blue: #1b60db;
   --grey-overcast: #9491aa;
   --grey-scattered: #eae9ee;
+  --grey-storm: #706a8a;
   --white: #fff;
   --dark-red: #d0021b;
   --light-blue: #eef6ff;
+  --black: #111;
 }
 
 @font-face {

@@ -30,3 +30,12 @@
   border-color: var(--dark-red);
   border-bottom-width: 0.125rem;
 }
+
+
+@media (prefers-color-scheme: dark) {
+  .input[type] {
+    background-color: var(--grey-scattered);
+    border: 0.0625rem solid var(--grey-overcast);
+    border-bottom-color: var(--black);
+  }
+}

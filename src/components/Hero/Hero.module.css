@@ -53,3 +53,13 @@
     padding: 1.5rem;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .hero {
+    filter: grayscale(0.5);
+  }
+
+  .hero-title-sub {
+    color: var(--grey-scattered);
+  }
+}

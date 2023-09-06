@@ -24,4 +24,8 @@
     background-color: var(--schiphol-blue);
     grid-template-rows: 70px min-content auto;
   }
+
+  .content-container {
+    background-color: var(--grey-scattered);
+  }
 }

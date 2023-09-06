@@ -53,3 +53,9 @@
     margin: 0.5rem -1.5rem -1.5rem;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .find-a-flight {
+    background-color: var(--grey-scattered);
+  }
+}

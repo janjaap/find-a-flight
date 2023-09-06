@@ -1,6 +1,5 @@
 import type { Flight } from '@/types/Flight';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
 
 export type Data = {
   flights: Array<Flight>;

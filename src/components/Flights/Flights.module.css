@@ -43,7 +43,7 @@
 }
 
 .flights-list-card__section + .flights-list-card__section {
-  border-left: 1px dashed var(--grey-overcast);
+  border-left: 1px dashed var(--grey-scattered);
 }
 
 .flights-list-card__airport {
@@ -53,6 +53,14 @@
 .flights-date {
   white-space: nowrap;
 }
+
+@media (prefers-color-scheme: dark) {
+  .flights-list-card {
+    background-color: var(--schiphol-blue);
+    color: var(--grey-overcast);;
+  }
+}
+
 
 @media screen and (max-width: 40rem) {
   .flights-list-card {
