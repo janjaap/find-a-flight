@@ -236,5 +236,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     });
   }
 
-  res.status(200).json({ flights });
+  // only return the five results with the highest score
+  const mostRelevant = flights.sort((flightA, flightB) => flightB.score - flightA.score).slice(0, 5);
+
+  res.status(200).json({ flights: mostRelevant });
 }

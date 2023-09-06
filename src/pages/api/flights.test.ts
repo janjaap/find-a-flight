@@ -15,7 +15,8 @@ describe('flights API', () => {
 
     const { flights } = res._getJSONData();
 
-    expect(flights).toHaveLength(departures.length);
+    // no more than five flights are returned from the search result
+    expect(flights).toHaveLength(5);
   });
 
   it('returns an empty list for arrivals', async () => {
