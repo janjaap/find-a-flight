@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import { FindAFlight } from "./FindAFlight";
 import { FlightsProvider } from "@/providers/FlightsProvider";
 
-const user = userEvent.setup({ delay: null });
+const user = userEvent.setup();
 
 const mockFetchFlights = jest.fn();
 
@@ -74,12 +74,21 @@ describe('FindAFlight', () => {
 
     expect(mockFetchFlights).not.toHaveBeenCalled();
 
-    await user.click(screen.getByRole('button', { name: 'Zoeken' }));
+    user.click(screen.getByRole('button', { name: 'Zoeken' }));
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Zoeken' })).toBeDisabled();
+    });
 
     expect(mockFetchFlights).toHaveBeenCalledWith({
       direction: 'departures',
       flightDate: expect.stringContaining('28 Feb 2023'),
       searchString: 'KL 1001',
+    });
+
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Zoeken' })).toBeEnabled();
     });
   });
 });

@@ -17,6 +17,7 @@ export function FindAFlight() {
   const [flightDate, setFlightDate] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [searchString, setSearchString] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchFlights = useFetchFlights();
   const { setFlights, setCriteria } = useFlights();
@@ -29,6 +30,8 @@ export function FindAFlight() {
     if (dateError) {
       return;
     }
+
+    setIsLoading(true);
 
     const dateFromValue = getDateFromValue(flightDate);
 
@@ -43,6 +46,7 @@ export function FindAFlight() {
 
     setIsSubmitted(false);
     setDateError('');
+    setIsLoading(false);
   }
 
   function onChangeDate(event: ChangeEvent<HTMLInputElement>) {
@@ -99,6 +103,7 @@ export function FindAFlight() {
             autoCapitalize="none"
             autoComplete="off"
             autoCorrect="off"
+            disabled={isLoading}
             erroneousInput={isSubmitted && dateError !== ''}
             id="date"
             onChange={onChangeDate}
@@ -121,6 +126,7 @@ export function FindAFlight() {
               autoCapitalize="none"
               autoComplete="off"
               autoCorrect="off"
+              disabled={isLoading}
               id="flight"
               onChange={onChangeSearchString}
               placeholder="Bij. KL 1001 of Londen"
@@ -129,7 +135,7 @@ export function FindAFlight() {
               value={searchString}
             />
 
-            <button type="submit" className={styles['find-a-flight__submit']}>
+            <button type="submit" className={styles['find-a-flight__submit']} disabled={isLoading}>
               <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                 <path
                   fill="currentcolor"
