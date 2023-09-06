@@ -125,7 +125,7 @@ export function FindAFlight() {
               onChange={onChangeSearchString}
               placeholder="Bij. KL 1001 of Londen"
               spellCheck="false"
-              type="search"
+              type="text"
               value={searchString}
             />
 

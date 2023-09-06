@@ -2,6 +2,8 @@ module.exports = {
   moduleNameMapper: {
     "\\.css$": "identity-obj-proxy",
     '^@/utils/(.*)$': '<rootDir>/src/utils/$1',
+    '^@/providers/(.*)$': '<rootDir>/src/providers/$1',
+    '^@/hooks/(.*)$': '<rootDir>/src/hooks/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jest-environment-jsdom',
