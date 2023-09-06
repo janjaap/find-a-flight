@@ -4,12 +4,13 @@
     "plugin:import/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "prettier",
-    "prettier/react"
+    "plugin:prettier/recommended",
+    "plugin:prettier/react"
   ],
   "plugins": [
     "import",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "react"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

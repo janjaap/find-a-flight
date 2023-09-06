@@ -2,10 +2,16 @@
   "printWidth": 120,
   "proseWrap": "always",
   "singleQuote": true,
-  "trailingComma": "es5",
+  "trailingComma": "always",
+  "semi": true,
+  "tabWidth": 2,
   "overrides": [
     {
-      "files": ["*.yml", "*.yaml", "*.css"],
+      "files": [
+        "*.yml",
+        "*.yaml",
+        "*.css"
+      ],
       "options": {
         "singleQuote": false
       }

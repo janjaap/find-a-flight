@@ -1,19 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import flightsHandler, { Data, departures } from './flights';
-import { createMocks } from 'node-mocks-http'
+import { createMocks } from 'node-mocks-http';
 import { getDateFromValue } from '../../utils/getDateFromValue';
 
 describe('flights API', () => {
   it('returns full list of flights when no search parameters are given', async () => {
     const { req, res } = createMocks<NextApiRequest, NextApiResponse<Data>>({
       method: 'GET',
-    })
+    });
 
     await flightsHandler(req, res);
 
     expect(res.statusCode).toBe(200);
 
-    const { flights } = res._getJSONData()
+    const { flights } = res._getJSONData();
 
     expect(flights).toHaveLength(departures.length);
   });
@@ -25,11 +25,11 @@ describe('flights API', () => {
       query: {
         direction: 'arrivals',
       }
-    })
+    });
 
     await flightsHandler(req, res);
 
-    const { flights } = res._getJSONData()
+    const { flights } = res._getJSONData();
     expect(flights.length).toBe(0);
   });
 
@@ -41,11 +41,11 @@ describe('flights API', () => {
       query: {
         flightDate: date?.toUTCString(),
       }
-    })
+    });
 
     await flightsHandler(req, res);
 
-    const { flights } = res._getJSONData()
+    const { flights } = res._getJSONData();
 
     expect(flights.length).not.toBe(0);
 
@@ -62,11 +62,11 @@ describe('flights API', () => {
       query: {
         flightDate: date?.toUTCString(),
       }
-    })
+    });
 
     await flightsHandler(req, res);
 
-    const { flights } = res._getJSONData()
+    const { flights } = res._getJSONData();
     expect(flights.length).toBe(0);
   });
 
@@ -79,11 +79,11 @@ describe('flights API', () => {
       query: {
         searchString: destination,
       }
-    })
+    });
 
     await flightsHandler(req, res);
 
-    const { flights } = res._getJSONData()
+    const { flights } = res._getJSONData();
 
     expect(flights.length).not.toBe(0);
 
@@ -99,11 +99,11 @@ describe('flights API', () => {
       query: {
         searchString: destination,
       }
-    })
+    });
 
     await flightsHandler(req, res);
 
-    const { flights } = res._getJSONData()
+    const { flights } = res._getJSONData();
     expect(flights.length).toBe(0);
   });
 });

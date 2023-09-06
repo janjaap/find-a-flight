@@ -1,10 +1,18 @@
 module.exports = {
   moduleNameMapper: {
-    "\\.css$": "identity-obj-proxy"
+    "\\.css$": "identity-obj-proxy",
+    '^@/utils/(.*)$': '<rootDir>/src/utils/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jest-environment-jsdom',
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    // Use babel-jest to transpile tests with the next/babel preset
+    // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '^.+\\.module\\.(css|sass|scss)$',
+  ],
 }

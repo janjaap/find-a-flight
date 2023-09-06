@@ -5,16 +5,30 @@ import type { Criteria } from '@/types/Criteria';
 import type { Flight } from '@/types/Flight';
 
 import styles from './Flights.module.css';
+import { getDateFromValue } from '@/utils/getDateFromValue';
 
 type Sort = 'asc' | 'desc';
-type DateStyle = "full" | "long" | "medium" | "short"
+type DateStyle = "full" | "long" | "medium" | "short";
 
 interface Props {
   criteria: Criteria | null;
   flights: Array<Flight>;
 }
 
-const formatFlightDate = (date: string, dateStyle?: DateStyle) => new Date(date).toLocaleDateString('nl-NL', { timeZone: 'UTC', dateStyle })
+const formatFlightDate = (date: string, dateStyle?: DateStyle) => new Date(date).toLocaleDateString('nl-NL', { timeZone: 'UTC', dateStyle });
+
+function getDateTimeFromFlight(flight: Flight) {
+  const date = getDateFromValue(flight.date);
+
+  if (!date) return new Date();
+
+  const [hours, minutes] = flight.expectedTime.split(':').map((timePart) => Number.parseInt(timePart, 10));
+
+  date?.setHours(hours);
+  date?.setMinutes(minutes);
+
+  return date;
+}
 
 export function Flights({ flights, criteria }: Props) {
   const [sort, setSort] = useState<Sort>('asc');
@@ -27,16 +41,11 @@ export function Flights({ flights, criteria }: Props) {
     }
   }
 
-  function sortByExpectedTime(flightA: Flight, flightB: Flight) {
-    let sortDirection = 0;
+  function sortByExpectedDateTime(flightA: Flight, flightB: Flight) {
+    const dateA = getDateTimeFromFlight(flightA);
+    const dateB = getDateTimeFromFlight(flightB);
 
-    if (flightA.expectedTime < flightB.expectedTime) {
-      sortDirection = -1;
-    } else if (flightA.expectedTime > flightB.expectedTime) {
-      sortDirection = 1;
-    }
-
-    return sort === 'asc' ? sortDirection : sortDirection * -1;
+    return sort === 'asc' ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
   }
 
   const formattedCriteria = [
@@ -54,7 +63,7 @@ export function Flights({ flights, criteria }: Props) {
                 {criteria?.flightDate && <>Alle vluchten met aankomstdatum <strong className={styles['flights-date']}>{formatFlightDate(criteria.flightDate, 'long')}</strong></>}
               </div>
 
-              <p>Aantal gevonden vluchten: <strong>{flights.length}</strong></p>
+              <p data-testid="numberOfFoundFlights">Aantal gevonden vluchten: <strong>{flights.length}</strong></p>
             </div>
 
             {flights.length > 1 && (
@@ -67,7 +76,7 @@ export function Flights({ flights, criteria }: Props) {
           </div>
 
           <ul className={styles['flights-list']}>
-            {flights.sort(sortByExpectedTime).map((flight) => (
+            {[...flights].sort(sortByExpectedDateTime).map((flight) => (
               <li className={styles['flights-list-card']} key={flight.flightIdentifier}>
                 <div className={styles['flights-list-card__section']}>
                   {flight.expectedTime}
